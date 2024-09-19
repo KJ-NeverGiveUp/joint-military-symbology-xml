@@ -1,4 +1,4 @@
-_**To follow the development of Esri supported military symbology solutions, please go to [Esri/military-symbology](https://github.com/Esri/military-symbology)**_
+## This repository is no longer maintained.
 
 # joint-military-symbology-xml
 Joint Military Symbology XML (JointMilSyML or JMSML) is an XML schema, and associated instance data, designed to definitively document the contents of US DOD MIL-STD-2525D and NATO APP-6(D).
