@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2019 # 改用 2019 版本，內建完整的舊版 .NET Framework 支援
+    runs-on: windows-2019
 
     steps:
     - name: Checkout code
@@ -15,7 +15,7 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v3
+      uses: NuGet/setup-nuget@v2
 
     - name: Restore NuGet Packages
       run: nuget restore source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln
