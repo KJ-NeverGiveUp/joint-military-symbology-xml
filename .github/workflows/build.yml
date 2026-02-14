@@ -1,11 +1,11 @@
 name: Build JMSML
 
 on:
-  workflow_dispatch: # 允許在網頁上手動觸發編譯
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019 # 改用 2019 版本，內建完整的舊版 .NET Framework 支援
 
     steps:
     - name: Checkout code
@@ -15,13 +15,10 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v2
+      uses: NuGet/setup-nuget@v3
 
     - name: Restore NuGet Packages
       run: nuget restore source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln
-
-    - name: Install .NET 4.5 Developer Pack
-      run: choco install netfx-4.5.2-devpack -y
 
     - name: Build Solution
       run: msbuild source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln /p:Configuration=Release
