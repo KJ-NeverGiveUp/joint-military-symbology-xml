@@ -1,4 +1,4 @@
-name: Build JMSML
+name: Build JMSML Executables
 
 on:
   workflow_dispatch:
@@ -20,11 +20,19 @@ jobs:
     - name: Restore NuGet Packages
       run: nuget restore source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln
 
-    - name: Build Solution
+    - name: Build Core Library (DLL)
       run: msbuild source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.csproj /p:Configuration=Release
+
+    - name: Build Windows GUI Demo (Test.exe)
+      run: msbuild source/JointMilitarySymbologyLibraryCS/Test/JMSML_Demo.csproj /p:Configuration=Release
+
+    - name: Build Command Line Tool (jmsml.exe)
+      run: msbuild source/JointMilitarySymbologyLibraryCS/jmsml/jmsml.csproj /p:Configuration=Release
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: Compiled-JMSML
-        path: source/JointMilitarySymbologyLibraryCS/**/bin/Release/
+        name: Compiled-Executables
+        path: |
+          source/JointMilitarySymbologyLibraryCS/Test/bin/Release/
+          source/JointMilitarySymbologyLibraryCS/jmsml/bin/Release/
