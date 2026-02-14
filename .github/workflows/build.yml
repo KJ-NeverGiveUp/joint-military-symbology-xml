@@ -20,8 +20,11 @@ jobs:
     - name: Restore NuGet Packages
       run: nuget restore source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln
 
+    - name: Install .NET 4.5 Developer Pack
+      run: choco install netfx-4.5.2-devpack -y
+
     - name: Build Solution
-      run: msbuild source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln /p:Configuration=Release /p:TargetFrameworkVersion=v4.8
+      run: msbuild source/JointMilitarySymbologyLibraryCS/JointMilitarySymbologyLibrary.sln /p:Configuration=Release
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
